@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <title>Kodluyoruz Javascript Saat Ödevi</title>
+    <style>
+        body {
+            background: black;
+        }
+
+        .clock {
+            position: relative;
+            text-align: center;
+            color: #e98208;
+            font-size: 60px;
+            font-family: Orbitron;
+            letter-spacing: 7px;
+        }
+
+        .text1 {
+            position: relative;
+            text-align: center;
+            /* margin-top: 14%; */
+            color: #e98208;
+            font-size: 50px;
+            font-family: Orbitron;
+            letter-spacing: 7px;
+        }
+    </style>
+</head>
+
+<body class="bg-dark" onload="getName(); showTime();">
+    <div class="text1 text-center mt-5">
+        <div class="text-center">
+            Merhaba, <strong><span id="myName"></span></strong>! Hoş geldin!
+        </div>
+        <div id="myClock" class="clock"></div>
+    </div>
+    <script>
+        function getName() {
+            let myNameDiv = document.getElementById('myName');
+            let name = 0;
+            while (Number.isInteger(parseInt(name))) {
+                name = prompt('Lütfen isminizi giriniz')
+            }
+            myNameDiv.innerText = name;
+        }
+
+        function showTime() {
+            writeTimetoElem();
+            setInterval(() => {
+                writeTimetoElem();
+            }, 1000)
+        }
+
+        function writeTimetoElem() {
+            let myClock = document.getElementById('myClock');
+            let date = new Date()
+            let day = date.getDay();
+            let hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours().toString();
+            let minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes().toString();
+            let second = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds().toString();
+            let stringDay = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi']
+            let fullDate = hour + ':' + minute + ':' + second + ' ' + stringDay[day]
+
+            myClock.innerText = fullDate
+        }
+    </script>
+</body>
+
+</html>
